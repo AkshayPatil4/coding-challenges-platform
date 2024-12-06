@@ -1,1 +1,108 @@
+[
+    {
+        "title": "Milestone 1: Task 1 - Set up Angular project",
+        "body": "Initialize an Angular project with routing and SCSS.\n\nChecklist:\n- Install Angular CLI.\n- Generate a new Angular project (`ng new coding-challenges-platform --routing --style=scss`).\n- Configure the workspace and install dependencies.",
+        "labels": ["frontend", "setup"]
+    },
+    {
+        "title": "Milestone 1: Task 2 - Install and configure PrimeNG",
+        "body": "Add PrimeNG to the project for UI components.\n\nChecklist:\n- Install PrimeNG and PrimeIcons: `npm install primeng primeicons`.\n- Configure `angular.json` to include PrimeNG CSS files.\n- Verify installation by adding a sample PrimeNG component.",
+        "labels": ["frontend", "setup"]
+    },
+    {
+        "title": "Milestone 1: Task 3 - Set up Firebase for authentication",
+        "body": "Configure Firebase for login and authentication.\n\nChecklist:\n- Create a Firebase project.\n- Add AngularFire to the Angular project: `ng add @angular/fire`.\n- Configure Firebase Authentication and environment files.",
+        "labels": ["authentication", "setup"]
+    },
+    {
+        "title": "Milestone 1: Task 4 - Set up FastAPI backend",
+        "body": "Initialize the backend for the project using FastAPI.\n\nChecklist:\n- Create a Python virtual environment.\n- Install FastAPI and Uvicorn: `pip install fastapi uvicorn`.\n- Create a basic \"Hello, World!\" endpoint to test the setup.",
+        "labels": ["backend", "setup"]
+    },
+    {
+        "title": "Milestone 1: Task 5 - Create PostgreSQL database schema",
+        "body": "Design and set up the database schema for challenges and submissions.\n\nChecklist:\n- Define tables for users, challenges, and submissions.\n- Create database migration scripts (e.g., using Alembic).",
+        "labels": ["backend", "database"]
+    },
+    {
+        "title": "Milestone 2: Task 6 - Create the home page",
+        "body": "Design the home page to display a list of coding challenges.\n\nChecklist:\n- Fetch challenge data from the backend (use mock data initially).\n- Use PrimeNG components (e.g., Card or DataTable) to display challenges.\n- Add a \"Start Challenge\" button for each challenge.",
+        "labels": ["frontend"]
+    },
+    {
+        "title": "Milestone 2: Task 7 - Build the challenge page",
+        "body": "Design the challenge page for solving coding challenges.\n\nChecklist:\n- Add a PrimeNG TabView for challenge description and code editor.\n- Integrate Monaco Editor for the code editor.\n- Add a \"Submit\" button for submitting solutions.",
+        "labels": ["frontend"]
+    },
+    {
+        "title": "Milestone 2: Task 8 - Design the dashboard",
+        "body": "Create a user dashboard to show completed challenges and progress.\n\nChecklist:\n- Use PrimeNG components like DataTable or Accordion for user statistics.\n- Fetch user data from the backend.",
+        "labels": ["frontend"]
+    },
+    {
+        "title": "Milestone 2: Task 9 - Set up Firebase Authentication UI",
+        "body": "Add login and signup pages with Firebase Authentication.\n\nChecklist:\n- Create a login form using PrimeNG InputText and Button components.\n- Use AngularFire to connect the form to Firebase Authentication.\n- Add error handling and feedback for login/signup failures.",
+        "labels": ["authentication", "frontend"]
+    },
+    {
+        "title": "Milestone 2: Task 10 - Add routing and navigation",
+        "body": "Implement routing and a navigation bar.\n\nChecklist:\n- Configure Angular Router for Home, Dashboard, and Challenge pages.\n- Create a PrimeNG Menubar for navigation.",
+        "labels": ["frontend"]
+    },
+    {
+        "title": "Milestone 3: Task 11 - Create API for fetching challenges",
+        "body": "Develop an API endpoint to fetch coding challenges.\n\nChecklist:\n- Create a `/challenges` endpoint in FastAPI.\n- Fetch challenges from the database.\n- Add pagination support.",
+        "labels": ["backend", "API"]
+    },
+    {
+        "title": "Milestone 3: Task 12 - Create API for submitting solutions",
+        "body": "Develop an API endpoint to evaluate submitted code.\n\nChecklist:\n- Create a `/submit` endpoint in FastAPI.\n- Validate user submissions and test against predefined cases.\n- Return results as JSON.",
+        "labels": ["backend", "API"]
+    },
+    {
+        "title": "Milestone 3: Task 13 - Integrate code execution engine",
+        "body": "Connect the backend to a code execution engine like Judge0 or Piston.\n\nChecklist:\n- Create a service to send code to the execution engine.\n- Fetch and return results from the engine.",
+        "labels": ["backend", "execution"]
+    },
+    {
+        "title": "Milestone 3: Task 14 - Connect OpenAI API for challenge generation",
+        "body": "Use OpenAI API to generate coding challenges.\n\nChecklist:\n- Create a `/generate-challenge` endpoint.\n- Send prompts to OpenAI and parse the results.\n- Store generated challenges in the database.",
+        "labels": ["backend", "AI"]
+    },
+    {
+        "title": "Milestone 3: Task 15 - Set up database interaction",
+        "body": "Write functions to query the PostgreSQL database.\n\nChecklist:\n- Use SQLAlchemy or similar library for database operations.\n- Implement CRUD operations for challenges and submissions.",
+        "labels": ["backend", "database"]
+    },
+    {
+        "title": "Milestone 4: Task 16 - Integrate frontend with backend APIs",
+        "body": "Connect Angular components to backend endpoints.\n\nChecklist:\n- Fetch challenges on the home page.\n- Send code submissions from the challenge page to the backend.",
+        "labels": ["frontend", "integration"]
+    },
+    {
+        "title": "Milestone 4: Task 17 - Add real-time feedback for submissions",
+        "body": "Implement real-time updates for code execution results.\n\nChecklist:\n- Use WebSocket with Socket.IO for real-time updates.\n- Display submission results on the challenge page dynamically.",
+        "labels": ["frontend", "backend"]
+    },
+    {
+        "title": "Milestone 5: Task 18 - Deploy frontend to Firebase Hosting",
+        "body": "Host the Angular app on Firebase.\n\nChecklist:\n- Build the app for production: `ng build --prod`.\n- Deploy to Firebase Hosting.",
+        "labels": ["deployment", "frontend"]
+    },
+    {
+        "title": "Milestone 5: Task 19 - Deploy backend to Render",
+        "body": "Host the FastAPI backend on a free Render tier.\n\nChecklist:\n- Containerize the app using Docker.\n- Deploy the app and test the API endpoints.",
+        "labels": ["deployment", "backend"]
+    },
+    {
+        "title": "Milestone 6: Task 20 - Test the entire workflow",
+        "body": "Perform end-to-end testing for all features.\n\nChecklist:\n- Test login → start challenge → submit code → view results.\n- Fix bugs and handle edge cases.",
+        "labels": ["testing"]
+    },
+    {
+        "title": "Milestone 6: Task 21 - Optimize performance",
+        "body": "Improve app performance for better user experience.\n\nChecklist:\n- Optimize backend queries.\n- Use lazy loading for Angular routes.",
+        "labels": ["optimization"]
+    }
+]
 
