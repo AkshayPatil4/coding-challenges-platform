@@ -1,0 +1,15 @@
+<div class="auth">
+  <div class="auth-container">
+    <div class="auth-card" [class.flip]="!isLogin">
+      <!-- Front Side: Login -->
+      <div class="auth-card-front">
+        <app-login (toggle)="toggleView()"></app-login>
+      </div>
+
+      <!-- Back Side: Signup -->
+      <div class="auth-card-back">
+        <app-signup (toggle)="toggleView()"></app-signup>
+      </div>
+    </div>
+  </div>
+</div>

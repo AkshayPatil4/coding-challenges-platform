@@ -1,14 +1,147 @@
-<form [formGroup]="signupForm" (ngSubmit)="onSignUp()">
-    <div>
-      <label for="email">Email</label>
-      <input id="email" type="email" formControlName="email" />
+<div class="logincontainer">
+  <div class="login-card">
+    <h2>Create Your Account</h2>
+    <form [formGroup]="signupForm" (ngSubmit)="onSignUp()" class="p-fluid">
+      <!-- Name -->
+      <div class="field">
+        <p-floatlabel variant="on">
+          <input
+            id="name"
+            pInputText
+            pSize="large"
+            type="text"
+            formControlName="name"
+            [ngClass]="{
+              'p-invalid':
+                signupForm.get('name')?.invalid &&
+                signupForm.get('name')?.touched
+            }"
+          />
+          <label for="name">Name</label>
+        </p-floatlabel>
+        <small
+          class="p-error"
+          *ngIf="
+            signupForm.get('name')?.invalid && signupForm.get('name')?.touched
+          "
+        >
+          <p-message severity="error" variant="simple" size="small"
+            >Name is required.</p-message
+          >
+        </small>
+      </div>
+
+      <!-- Email -->
+      <div class="field">
+        <p-floatlabel variant="on">
+          <input
+            id="email"
+            pInputText
+            pSize="large"
+            type="email"
+            formControlName="email"
+            [ngClass]="{
+              'p-invalid':
+                signupForm.get('email')?.invalid &&
+                signupForm.get('email')?.touched
+            }"
+          />
+          <label for="email">Email</label>
+        </p-floatlabel>
+        <small
+          class="p-error"
+          *ngIf="
+            signupForm.get('email')?.invalid && signupForm.get('email')?.touched
+          "
+        >
+          <p-message severity="error" variant="simple" size="small"
+            >Email is required</p-message
+          >
+        </small>
+      </div>
+
+      <!-- Password -->
+      <div class="field">
+        <p-floatlabel variant="on">
+          <p-password
+            inputId="password"
+            size="large"
+            formControlName="password"
+            [toggleMask]="true"
+          >
+          </p-password>
+          <label for="password">Password</label>
+        </p-floatlabel>
+        <small
+          class="p-error"
+          *ngIf="
+            signupForm.get('password')?.invalid &&
+            signupForm.get('password')?.touched
+          "
+        >
+          <p-message severity="error" variant="simple" size="small"
+            >Password must be at least 6 characters.</p-message
+          >
+        </small>
+      </div>
+
+      <!-- Confirm Password -->
+      <div class="field">
+        <p-floatlabel variant="on">
+          <p-password
+            [feedback]="false"
+            inputId="confirmPassword"
+            size="large"
+            formControlName="confirmPassword"
+            [toggleMask]="true"
+          >
+          </p-password>
+          <label for="confirmPassword">Confirm Password</label>
+        </p-floatlabel>
+        <small
+          class="p-error"
+          *ngIf="
+            signupForm.get('confirmPassword')?.invalid &&
+            signupForm.get('confirmPassword')?.touched
+          "
+        >
+          <p-message severity="error" variant="simple" size="small"
+            >Passwords must match.</p-message
+          >
+        </small>
+      </div>
+
+      <!-- Signup Button -->
+      <div class="field">
+        <button
+          pButton
+          type="submit"
+          label="Sign Up"
+          class="p-button-primary full-width"
+          [disabled]="signupForm.invalid"
+        ></button>
+      </div>
+    </form>
+
+    <!-- Divider -->
+    <div class="divider">
+      <span>OR</span>
     </div>
-  
-    <div>
-      <label for="password">Password</label>
-      <input id="password" type="password" formControlName="password" />
-    </div>
-  
-    <button type="submit" [disabled]="signupForm.invalid">Sign Up</button>
-  </form>
-  
+
+    <!-- Signup with Google -->
+    <button
+      pButton
+      type="button"
+      label="Sign up with Google"
+      class="p-button-secondary full-width"
+      (click)="onGoogleSignUp()"
+    >
+      <i class="pi pi-google" style="margin-right: 0.5rem"></i>
+    </button>
+
+    <p class="register-link">
+      Don't have an account? <a (click)="switchToLogin()">Register</a>
+    </p>
+  </div>
+  <p-toast></p-toast>
+</div>

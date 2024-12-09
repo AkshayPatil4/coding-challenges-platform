@@ -1,16 +1,87 @@
-<form [formGroup]="loginForm" (ngSubmit)="onLogin()">
-    <div>
-      <label for="email">Email</label>
-      <input id="email" type="email" formControlName="email" />
+<div class="logincontainer">
+  <div class="login-card">
+    <h2>Login to Your Account</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="p-fluid">
+      <div class="field">
+        <p-floatlabel variant="on">
+          <input
+            id="email"
+            pInputText
+            pSize="large"
+            type="email"
+            formControlName="email"
+            [ngClass]="{
+              'p-invalid':
+                loginForm.get('email')?.invalid &&
+                loginForm.get('email')?.touched
+            }"
+          />
+          <label for="email">Email</label>
+        </p-floatlabel>
+        <small
+          class="p-error"
+          *ngIf="
+            loginForm.get('email')?.invalid && loginForm.get('email')?.touched
+          "
+        >
+          <p-message severity="error" variant="simple" size="small">
+            Email is required</p-message
+          >
+        </small>
+      </div>
+
+      <div class="field">
+        <p-floatlabel variant="on">
+          <p-password
+            size="large"
+            inputId="password"
+            formControlName="password"
+            [feedback]="false"
+            [toggleMask]="true"
+          >
+          </p-password>
+          <label for="password">Password</label>
+        </p-floatlabel>
+        <small
+          class="p-error"
+          *ngIf="
+            loginForm.get('password')?.invalid &&
+            loginForm.get('password')?.touched
+          "
+          ><p-message severity="error" variant="simple" size="small">
+            Password must be at least 6 characters.</p-message
+          >
+        </small>
+      </div>
+
+      <div class="field">
+        <button
+          pButton
+          type="submit"
+          label="Login"
+          class="p-button-primary full-width"
+          [disabled]="loginForm.invalid"
+        ></button>
+      </div>
+    </form>
+
+    <div class="divider">
+      <span>OR</span>
     </div>
-  
-    <div>
-      <label for="password">Password</label>
-      <input id="password" type="password" formControlName="password" />
-    </div>
-  
-    <button type="submit" [disabled]="loginForm.invalid">Login</button>
-  </form>
-  
-  <button (click)="onGoogleSignIn()">Sign in with Google</button>
-  
+
+    <button
+      pButton
+      type="button"
+      label="Sign in with Google"
+      class="p-button-secondary full-width"
+      (click)="onGoogleSignIn()"
+    >
+      <i class="pi pi-google" style="margin-right: 0.5rem"></i>
+    </button>
+    <p class="register-link">
+      Don't have an account? <a (click)="switchToSignup()">Register</a>
+    </p>
+
+    <p-toast></p-toast>
+  </div>
+</div>

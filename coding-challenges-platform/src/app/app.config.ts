@@ -8,6 +8,7 @@ import { routes } from './app.routes';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
+import {MyPreset} from './mytheme';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,7 +17,12 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     providePrimeNG({
       theme: {
-        preset: Aura,
+        preset: MyPreset,
+        options: {
+          prefix: 'p',
+          darkModeSelector: false || 'none'
+          
+      }
       },
     }),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
