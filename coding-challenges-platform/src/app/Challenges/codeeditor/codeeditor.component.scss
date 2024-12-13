@@ -1,0 +1,19 @@
+.editor-container {
+  height: 40vh; /* Fixed height: 40% of viewport height */
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+:host ::ng-deep .cm-editor {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+:host ::ng-deep .cm-scroller {
+  flex: 1;
+  overflow: auto; /* Enables internal scrolling */
+}
