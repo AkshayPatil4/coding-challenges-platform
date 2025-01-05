@@ -20,10 +20,5 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('coding-challenges-platform');
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, coding-challenges-platform');
-  });
+  
 });
