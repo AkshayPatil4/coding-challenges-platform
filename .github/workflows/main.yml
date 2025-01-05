@@ -1,4 +1,4 @@
-name: CI/CD Pipeline for Coding Challenges Platform
+name: Build, Test, and Deploy Workflow
 
 on:
   push:
@@ -9,43 +9,73 @@ on:
       - main
 
 jobs:
-  # Step 1: Backend Build and Test
-  backend:
-    name: Backend Build and Test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: List Root Directory
-        run: ls -al
-
-      - name: List Backend Directory
-        run: ls -al coding-challenges-platform/Backend
-
-      - name: Build backend Docker image for testing
-        run: |
-          docker build -t backend-test-image:latest -f coding-challenges-platform/Backend/Dockerfile.test coding-challenges-platform/Backend
-
-      - name: Run backend static code analysis
-        run: |
-          docker run --rm backend-test-image:latest
-          
-  # Step 2: Frontend Build and Test
+  # Frontend Build and Test Job
   frontend:
     name: Frontend Build and Test
     runs-on: ubuntu-latest
     steps:
+      # Step 1: Checkout the code
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Install Node.js
+      # Step 2: Set up Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      - name: Install dependencies
+      # Step 3: Install dependencies
+      - name: Install frontend dependencies
         run: npm ci
+        working-directory: ./coding-challenges-platform
 
+      # Step 4: Run tests
       - name: Run frontend tests
         run: npm test -- --watch=false --no-progress
+        working-directory: ./coding-challenges-platform
+
+      # Step 5: Build the frontend
+      - name: Build frontend
+        run: npm run build -- --configuration=production
+        working-directory: ./coding-challenges-platform
+
+  # Backend Build and Test Job
+  backend:
+    name: Backend Build and Test
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.10
+
+      # Step 3: Install dependencies
+      - name: Install backend dependencies
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+          pip install -r Backend/requirements.txt
+
+      # Step 4: Run tests
+      - name: Run backend tests
+        run: pytest
+        working-directory: ./Backend
+
+  # Simulated Deployment Job
+  deploy:
+    name: Simulated Deployment
+    runs-on: ubuntu-latest
+    needs: [frontend, backend]
+    steps:
+      # Step 1: Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Simulate deployment
+      - name: Deploy application
+        run: echo "Simulating deployment of frontend and backend..."
