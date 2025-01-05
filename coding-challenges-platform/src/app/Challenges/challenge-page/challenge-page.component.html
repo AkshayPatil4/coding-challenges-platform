@@ -1,0 +1,102 @@
+<div class="challenge-page-container">
+  <!-- Top Nav -->
+  <div class="top-nav">
+    <div class="top-nav-content flex align-items-center justify-content-between px-3">
+      <div class="flex align-items-center gap-2">
+        <i class="pi pi-arrow-left cursor-pointer" (click)="goBack()"></i>
+        <span class="font-bold text-lg">{{challengeTitle}}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content flex flex-row flex-wrap w-full" style="overflow:hidden;">
+    <!-- Sidebar/Challenge Details -->
+    <div class="w-12 lg:w-4 challenge-details p-3 flex flex-column" style="overflow:auto;">
+      <p-panel header="Challenge Details" [toggleable]="true" [collapsed]="isSmallScreen" class="mb-3" styleClass="w-full">
+        <div class="flex align-items-center justify-content-between mb-3">
+          <h2 class="m-0">{{ challengeTitle }}</h2>
+          <p-badge [value]="selectedDifficulty | titlecase" [style]="{'background-color': getDifficultyColor(selectedDifficulty)}"></p-badge>
+        </div>
+        <p>{{ challengeDescription }}</p>
+        <h3>Instructions</h3>
+        <ul class="pl-3">
+          <li *ngFor="let step of instructions">{{ step }}</li>
+        </ul>
+        <h3>Examples</h3>
+        <div *ngFor="let example of examples" class="example mb-2">
+          <strong>Input:</strong> {{example.input}}<br>
+          <strong>Output:</strong> {{example.output}}
+        </div>
+      </p-panel>
+    </div>
+
+    <!-- Editor and Results Area -->
+    <div class="w-12 lg:w-8 p-3 flex flex-column gap-3" style="overflow:auto;">
+      <!-- Editor Controls (top of editor) -->
+      <div class="flex align-items-center justify-content-between">
+        <!-- Left: Language Selection -->
+        <p-select 
+          [(ngModel)]="selectedLanguage"
+          [options]="languages" 
+          optionLabel="name"
+          placeholder="Select Language"
+          class="language-select"
+        ></p-select>
+
+        <!-- Right: Theme Selection -->
+        <p-select
+        
+          [(ngModel)]="selectedTheme"
+          [options]="themes"
+          optionLabel="name"
+           optionValue="value"
+          placeholder="Select Theme"
+          class="theme-select"
+          
+        ></p-select>
+      </div>
+
+      <!-- Editor Container (Fixed Height) -->
+      <app-codeeditor 
+        [initialCode]="initialCode"
+        [theme]="selectedTheme"
+        class="editor-box"
+      ></app-codeeditor>
+
+      <!-- Buttons below editor -->
+      <div class="flex align-items-center gap-2">
+        <p-button label="Run" icon="pi pi-play" (onClick)="runCode()" variant="text" [raised]="true" severity="primary"></p-button>
+        <p-button label="Submit" icon="pi pi-send" (onClick)="submitCode()" variant="text" [raised]="true" severity="success"></p-button>
+        <div class="ml-auto flex align-items-center gap-2">
+          <i *ngIf="loading" class="pi pi-spinner pi-spin text-2xl"></i>
+        </div>
+      </div>
+
+      <!-- Tabs for Results and Test Cases -->
+      <p-tabs style="flex-shrink:0;">
+        <p-tablist>
+          <p-tab value="0">Results</p-tab>
+          <p-tab value="1">Test Cases</p-tab>
+        </p-tablist>
+
+        <p-tabpanel value="0">
+          <div class="results-panel p-2" style="max-height:150px; overflow:auto;">
+            <p *ngIf="executionResult">{{ executionResult }}</p>
+          </div>
+        </p-tabpanel>
+        <p-tabpanel value="1">
+          <div class="test-cases p-2" style="max-height:150px; overflow:auto;">
+            <ul class="m-0 pl-3">
+              <li *ngFor="let testCase of testCases">
+                <strong>Input:</strong> {{testCase.input}} |
+                <strong>Expected:</strong> {{testCase.expected}} |
+                <strong>Output:</strong> {{testCase.output || 'N/A'}}
+              </li>
+            </ul>
+          </div>
+        </p-tabpanel>
+      </p-tabs>
+    </div>
+  </div>
+</div>

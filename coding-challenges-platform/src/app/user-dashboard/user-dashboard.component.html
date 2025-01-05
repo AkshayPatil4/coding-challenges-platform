@@ -1,0 +1,98 @@
+<div class="dashboard-container flex flex-column align-items-center p-3">
+  <!-- User Profile Card -->
+  <div class="profile-card-container flex justify-content-center align-items-center">
+    <div class="user-profile-card flex flex-wrap align-items-center gap-3">
+      <img
+        src="https://avatar.iran.liara.run/public/41"
+        alt="User Avatar"
+        class="user-profile-card__avatar"
+      />
+      <!-- Left Column -->
+      <div class="user-profile-card__left">
+        <div class="user-profile-card__top-row flex align-items-center gap-2">
+          <h3 class="user-profile-card__username">Akshay Patil</h3>
+          <div class="user-profile-card__rank-badge">
+            <span>8 kyu</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Middle Info -->
+      <div class="user-profile-card__middle">
+        <div><strong>Member Since:</strong> Dec 2024</div>
+        <div><strong>Last Seen:</strong> Dec 2024</div>
+        <div class="flex align-items-center gap-1">
+          <a href="#"> <strong>Profile:</strong> <i class="pi pi-github"></i></a>
+        </div>
+      </div>
+
+      <!-- Right Section -->
+      <div class="user-profile-card__right">
+        <div><strong>Following:</strong> 0</div>
+        <div><strong>Followers:</strong> 0</div>
+        <div><strong>Allies:</strong> 0</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabs Section -->
+  <div class="tabs-container w-full mt-5">
+    <p-tabs style="justify-content: center; text-align: center;">
+      <!-- Tabs List -->
+      <p-tablist>
+        <p-tab value="stats">Stats</p-tab>
+        <p-tab value="solutions">Solutions</p-tab>
+      </p-tablist>
+
+      <!-- Stats Tab Content -->
+      <p-tabpanel value="stats">
+        <p-card styleClass="surface-0 w-full md:w-8 text-center">
+          <h4>Progress</h4>
+          <div class="text-secondary text-sm mb-3">
+            Rank: 8 kyu | Honor: 9 | Total Completed Kata: 1
+          </div>
+          <h5>Honor Breakdown</h5>
+          <div class="flex flex-column gap-1 text-sm mb-3">
+            <div class="flex align-items-center justify-content-between">
+              <span>Completed Kata (8)</span>
+              <div
+                class="bg-orange-400"
+                style="width: 100px; height: 8px; border-radius: 4px"
+              ></div>
+            </div>
+            <div class="flex align-items-center justify-content-between">
+              <span>Authored Kata & Translations (0)</span>
+              <div
+                class="bg-gray-300"
+                style="width: 100px; height: 8px; border-radius: 4px"
+              ></div>
+            </div>
+          </div>
+          <h5>Rank Breakdown</h5>
+          <div class="flex align-items-center gap-2 justify-content-center">
+            <div
+              style="
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background: conic-gradient(#f44336 40%, #ccc 0);
+              "
+            ></div>
+            <div class="text-sm">
+              Overall: 8 kyu / 40.0%<br />
+              TypeScript: 8 kyu / 40.0%
+            </div>
+          </div>
+        </p-card>
+      </p-tabpanel>
+
+      <!-- Solutions Tab Content -->
+      <p-tabpanel value="solutions">
+        <p-card styleClass="surface-0 w-full md:w-6 text-center">
+          <h4>Solutions</h4>
+          <p class="text-secondary text-sm">You have solved 1 kata so far!</p>
+        </p-card>
+      </p-tabpanel>
+    </p-tabs>
+  </div>
+</div>

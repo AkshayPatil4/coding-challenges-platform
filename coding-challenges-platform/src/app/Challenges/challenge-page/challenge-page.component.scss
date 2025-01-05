@@ -1,0 +1,57 @@
+@import 'primeflex/primeflex.css';
+
+:root {
+  --light-bg: #ffffff;
+  --light-text: #333333;
+  --dark-bg: #1e1e1e;
+  --dark-text: #d4d4d4;
+  --border-color: #ccc;
+}
+
+.challenge-page-container {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--light-bg);
+  color: var(--light-text);
+  box-sizing: border-box;
+  height: 100vh;
+}
+
+.top-nav {
+  flex-shrink: 0;
+  height: 50px;
+  line-height: 50px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.top-nav-content {
+  height: 100%;
+}
+
+.nav-link {
+  cursor: pointer;
+  color: var(--light-text);
+}
+
+.example {
+  font-size: 0.95rem;
+}
+
+.language-select, .theme-select {
+  font-size: 0.9rem;
+}
+
+.editor-box {
+  /* Just a class to target the editor if needed, no styles here */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 991px) {
+  .challenge-details p-panel {
+    margin-bottom: 1rem;
+  }
+
+  .top-nav-content span.font-bold.text-lg {
+    font-size: 1.1rem;
+  }
+}

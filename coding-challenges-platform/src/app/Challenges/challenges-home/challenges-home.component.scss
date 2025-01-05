@@ -1,0 +1,67 @@
+.challenge-card {
+    position: relative; /* Enable absolute positioning for the chip */
+    border-radius: 8px;
+  
+    .card-header {
+      display: flex;
+      align-items: center;
+    }
+  
+    h5 {
+      font-weight: bold;
+      margin: 0;
+    }
+  
+    .collection-heading {
+      font-size: 1.1rem; /* Slightly larger font for the collection heading */
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+  
+    .p-chip {
+      font-size: 0.75rem; /* Smaller chip size */
+      padding: 0.2rem 0.5rem;
+      border-radius: 1rem;
+  
+      &.chip-beginner {
+        background: #28a745;
+        color: #fff;
+      }
+  
+      &.chip-intermediate {
+        background: #ffc107;
+        color: #fff;
+      }
+  
+      &.chip-advanced {
+        background: #dc3545;
+        color: #fff;
+      }
+    }
+  
+    button {
+      background: #4e54c8;
+      border: none;
+      color: #fff;
+  
+      &:hover {
+        background: #3e44b8;
+      }
+    }
+  
+    .challenge-date {
+      font-size: 0.9rem; /* Slightly smaller font for the date */
+      display: flex;
+      align-items: center;
+  
+      i {
+        font-size: 1.2rem; /* Calendar icon size */
+        color: #6c757d; /* Muted color for the icon */
+      }
+  
+      span {
+        color: #6c757d; /* Muted color for the date text */
+      }
+    }
+  }
+  
