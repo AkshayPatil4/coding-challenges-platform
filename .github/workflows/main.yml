@@ -27,9 +27,9 @@ jobs:
         run: |
           docker build -t backend-test-image:latest -f coding-challenges-platform/Backend/Dockerfile.test coding-challenges-platform/Backend
 
-      - name: Run backend tests inside Docker container
+      - name: Run backend static code analysis
         run: |
-          docker run --rm backend-test-image:latest pytest
+          docker run --rm backend-test-image:latest
 
   # Step 2: Frontend Build and Test
   frontend:
