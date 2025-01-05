@@ -1,0 +1,156 @@
+$user-bg: #f5f6f9;
+$user-text: #0c0c0c;
+$badge-bg: #333;
+$accent-color: #4a90e2;
+
+.profile-card-container {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.user-profile-card {
+  background: $user-bg;
+  color: $user-text;
+  padding: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2rem;
+  border-radius: 4px;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+  position: relative; // for absolute positioning of avatar
+  max-width: 100%;
+
+  &__avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    // By default (on small screens), position relatively so it moves with content
+    position: relative;
+  }
+
+  &__top-row {
+    .user-profile-card__rank-badge {
+      background: $badge-bg;
+      color: #fff;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      display: inline-flex;
+      align-items: center;
+      font-weight: bold;
+      padding: 0.2rem 0.7rem;
+      text-transform: uppercase;
+      clip-path: polygon(10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%, 0% 50%);
+    }
+
+    .user-profile-card__username {
+      margin: 0;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #121111;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .user-profile-card__honor {
+      font-size: 0.85rem;
+      color: #0f0e0e;
+    }
+  }
+
+  &__details {
+    font-size: 0.9rem;
+    margin: 0.5rem 0;
+
+    strong {
+      color: #0a0a0a;
+      font-weight: 600;
+    }
+  }
+
+  &__action {
+    font-size: 0.85rem;
+    border: 1px solid $accent-color;
+    color: $accent-color;
+    padding: 0.3rem 0.5rem;
+    border-radius: 4px;
+    background: transparent;
+
+    &:hover {
+      background: $accent-color;
+      color: #fff;
+    }
+  }
+
+  &__left,
+  &__middle,
+  &__right {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    min-width: 0;
+    flex: 1 1 auto; // allow these sections to shrink and grow
+  }
+
+  &__middle,
+  &__right {
+    font-size: 0.9rem;
+
+    strong {
+      color: #101010;
+      font-weight: 600;
+    }
+
+    i.pi {
+      color: #040404;
+      font-size: 0.9rem;
+    }
+
+    div {
+      margin-bottom: 0.3rem;
+    }
+  }
+
+  // Larger screens: position avatar absolutely and shift it outside
+  @media (min-width: 600px) {
+    & {
+      // Enough horizontal space to show avatar partially outside
+      padding-left: 70px; // reserve space for avatar overlap
+    }
+
+    &__avatar {
+      position: absolute;
+      left: -30px; // shift avatar outside the card for the desired effect
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  // On very small screens, we let everything wrap naturally
+  @media (max-width: 599px) {
+    // Let avatar stay inline (relative), which is the default above
+    &__avatar {
+      position: relative;
+      left: 0;
+      top: 0;
+      transform: none;
+      margin-bottom: 0.5rem;
+    }
+
+    // Adjust text to wrap if needed
+    .user-profile-card__top-row {
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      .user-profile-card__username {
+        white-space: normal;
+      }
+    }
+
+    .user-profile-card__action {
+      margin-top: 1rem;
+    }
+  }
+}
