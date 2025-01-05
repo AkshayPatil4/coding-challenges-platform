@@ -17,10 +17,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name:  List Root Directory
+      - name: List Root Directory
         run: ls -al
 
-      - name:  List Backend Directory
+      - name: List Backend Directory
         run: ls -al coding-challenges-platform/Backend
 
       - name: Build backend Docker image for testing
@@ -30,7 +30,7 @@ jobs:
       - name: Run backend static code analysis
         run: |
           docker run --rm backend-test-image:latest
-
+          
   # Step 2: Frontend Build and Test
   frontend:
     name: Frontend Build and Test
