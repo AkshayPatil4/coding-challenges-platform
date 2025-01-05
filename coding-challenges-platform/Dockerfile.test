@@ -11,5 +11,5 @@ RUN npm install
 # Copy the entire frontend source code
 COPY . /app
 
-# Run tests (default command)
+# Run tests
 CMD ["npm", "test", "--", "--watch=false", "--no-progress"]

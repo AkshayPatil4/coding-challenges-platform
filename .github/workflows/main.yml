@@ -1,4 +1,4 @@
-name: CI/CD Pipeline for Coding Challenges Platform
+name: CI/CD Pipeline
 
 on:
   push:
@@ -9,31 +9,36 @@ on:
       - main
 
 jobs:
-  # Backend Build and Test
+  # Step 1: Backend Build and Test
   backend:
-    name: Backend Build and Test (Docker)
+    name: Backend Build and Test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: List Files
+        run: ls -al
+
       - name: Build backend Docker image for testing
-        working-directory: ./Backend
+        working-directory: Backend
         run: |
           docker build -t backend-test-image:latest -f Dockerfile.test .
 
       - name: Run backend tests inside Docker container
-        working-directory: ./Backend
         run: |
           docker run --rm backend-test-image:latest pytest
 
-  # Frontend Build and Test
+  # Step 2: Frontend Build and Test
   frontend:
-    name: Frontend Build and Test (Docker)
+    name: Frontend Build and Test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
+      - name: List Files
+        run: ls -al
 
       - name: Build frontend Docker image for testing
         run: |
@@ -43,7 +48,7 @@ jobs:
         run: |
           docker run --rm frontend-test-image:latest npm test -- --watch=false --no-progress
 
-  # Simulate Deployment
+  # Step 3: Simulate Deployment
   simulate-deploy:
     name: Simulate Deployment
     runs-on: ubuntu-latest
@@ -53,7 +58,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Build backend Docker image for deployment
-        working-directory: ./Backend
+        working-directory: Backend
         run: |
           docker build -t backend-deploy-image:latest .
 
@@ -64,14 +69,14 @@ jobs:
       - name: Simulate running containers
         run: |
           # Start backend container
-          docker run -d --name simulate-backend -p 8000:8000 backend-deploy-image:latest
+          docker run -d --name backend -p 8000:8000 backend-deploy-image:latest
 
           # Start frontend container
-          docker run -d --name simulate-frontend -p 8080:80 frontend-deploy-image:latest
+          docker run -d --name frontend -p 8080:80 frontend-deploy-image:latest
 
           # Check running containers
           docker ps
 
           # Stop and remove containers after simulation
-          docker stop simulate-backend simulate-frontend
-          docker rm simulate-backend simulate-frontend
+          docker stop backend frontend
+          docker rm backend frontend
