@@ -39,16 +39,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name:  List Root Directory
-        run: ls -al
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
 
-      - name: List Frontend Directory
-        run: ls -al coding-challenges-platform
+      - name: Install dependencies
+        run: npm ci
 
-      - name: Build frontend Docker image for testing
-        run: |
-          docker build -t frontend-test-image:latest -f coding-challenges-platform/Dockerfile.test coding-challenges-platform
-
-      - name: Run frontend tests inside Docker container
-        run: |
-          docker run --rm frontend-test-image:latest npm test -- --watch=false --no-progress
+      - name: Run frontend tests
+        run: npm test -- --watch=false --no-progress
